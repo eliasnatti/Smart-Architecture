@@ -61,10 +61,18 @@ The standard pattern for machine learning in this industry: take the inputs, emb
 
 A model with a flat prior can still learn — given enough data — to act as though it knows about the structure. But "given enough data" is the catch. Without the structural prior, models in this domain tend to require more training examples than the physics should demand, generalize poorly to configurations that are on the viable manifold but outside the training distribution, and have no principled way to detect a query that is geometrically off the manifold entirely.
 
+Tree-based methods — gradient-boosted decision trees, random forests — are worth calling out specifically, because where they are used in semiconductor manufacturing, their geometric prior is the wrong one. A tree splits on a single feature at a time, decomposing what is actually a hierarchical containment into a sequence of pairwise thresholds. The flag becomes a bag of cuts. The model can learn that certain batches cluster together; what it cannot recover is *why* — that the clustering arises from nested viability constraints propagating through the process chain. The prior baked into the tree is axis-aligned partitioning, and no amount of depth or ensembling turns that into the containment geometry the physics actually has.
+
 None of this is an argument that current models are bad. It is an argument that they are leaving structure on the table. The flag manifold is in the physics whether the model uses it or not. A model that knows it is on a flag manifold can exploit that fact at the level of architecture, not as a fine-tuning trick.
 
-## The geometry was always there
+## So what do we do about it
 
-The next posts on this blog will work through the experimental side: what architectures look like when they are built to respect Grassmannian and flag structure, what they buy in transfer, in data efficiency, in interpretability, and where the structure breaks down. The purpose of this post is the prior step — to make the case that the geometry exists in the physical systems before any model is built on top of them.
+If the geometry is real — and I have tried to make the case that it is — then the research direction is clear, even if the answers are not.
 
-The fab has always been a stack of nested viability constraints. The accelerator has always been a sequence of beam-defined acceptance regions. The device-circuit-system hierarchy has always been a containment chain. The question is not whether the geometry is real. It is whether the model knows.
+The first question is architecture. What does a model look like when its embedding space is not $\mathbb{R}^n$ but a flag manifold or a Grassmannian? The differential geometry of these spaces is well understood; the machine learning on them is not. There is early work on learning representations that live on Grassmannians, but almost none of it has been applied to manufacturing data, and none of it addresses the full nested-containment structure of a process flow.
+
+The second question is what you get for the effort. The claim is that encoding the right geometric prior should buy data efficiency — fewer training examples to reach the same predictive accuracy — and should improve transfer across process nodes, because the flag structure is invariant even when the specific parameter values change. Those are testable claims. They have not been tested in this domain.
+
+The third question is where the structure breaks down. Not every step in a process flow has clean nested containment. Interactions that skip levels, feedback loops, and shared-resource constraints all complicate the picture. A useful geometric framework has to be honest about where its assumptions stop holding.
+
+The fab has always been a stack of nested viability constraints. The accelerator has always been a sequence of beam-defined acceptance regions. The device-circuit-system hierarchy has always been a containment chain. The question is not whether the geometry is real. It is whether we build models that know.
