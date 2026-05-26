@@ -18,7 +18,18 @@ toc:
     border-radius: 4px; font-size: 0.9rem;
   }
   .model-btn.active { background: var(--global-theme-color); color: white; border-color: var(--global-theme-color); }
-  .dash-frame { width: 100%; height: 720px; border: 1px solid var(--global-divider-color); border-radius: 4px; margin-top: 0.5rem; }
+  .dash-frame {
+  width: 95vw;
+  max-width: 1600px;
+  height: 85vh;
+  min-height: 640px;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 4px;
+  margin: 0.5rem 0;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  }
   .dash-stub {
     width: 100%; height: 100px; border: 1px dashed var(--global-divider-color); border-radius: 4px;
     display: flex; align-items: center; justify-content: center; margin-top: 0.5rem; color: var(--global-text-color-light);
