@@ -16,6 +16,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/Smart-Architecture/blog/";
           },
+        },{id: "nav-research",
+          title: "research",
+          description: "Active research programs and experimental results.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/Smart-Architecture/research/";
+          },
         },{id: "post-flag-manifolds-in-the-fab",
         
           title: "Flag Manifolds in the Fab",
