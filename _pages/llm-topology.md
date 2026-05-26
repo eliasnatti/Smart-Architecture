@@ -4,40 +4,101 @@ title: LLM topology
 permalink: /llm-topology/
 description: "Prompt Engineering as Geometry — eight experiments measuring how prompts shape internal model state."
 nav: false
-toc:
-  sidebar: left
 ---
 
 <style>
-  .exp-block { border: 1px solid var(--global-divider-color); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  /* ---- Sticky experiment nav ---- */
+  .exp-nav {
+    position: sticky;
+    top: 56px;                /* sits just below al-folio's fixed navbar */
+    z-index: 50;
+    background: var(--global-bg-color);
+    border-bottom: 1px solid var(--global-divider-color);
+    padding: 0.5rem 0;
+    margin: 1rem 0 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .exp-nav a {
+    padding: 4px 12px;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--global-text-color);
+    white-space: nowrap;
+    background: var(--global-card-bg-color, transparent);
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .exp-nav a:hover {
+    background: var(--global-theme-color);
+    color: white;
+    border-color: var(--global-theme-color);
+  }
+
+  /* ---- Experiment blocks ---- */
+  .exp-block {
+    border: 1px solid var(--global-divider-color);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    scroll-margin-top: 120px;  /* clears the fixed navbar + sticky nav on anchor jumps */
+  }
   .exp-block h2 { margin-top: 0; }
+
+  /* ---- Model selector buttons ---- */
   .model-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.75rem 0; }
   .model-btn {
-    padding: 6px 14px; border: 1px solid var(--global-divider-color);
-    background: var(--global-card-bg-color, transparent); cursor: pointer;
-    border-radius: 4px; font-size: 0.9rem;
+    padding: 6px 14px;
+    border: 1px solid var(--global-divider-color);
+    background: var(--global-card-bg-color, transparent);
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
   }
-  .model-btn.active { background: var(--global-theme-color); color: white; border-color: var(--global-theme-color); }
+  .model-btn.active {
+    background: var(--global-theme-color);
+    color: white;
+    border-color: var(--global-theme-color);
+  }
+
+  /* ---- Dashboard iframe: break out of page container ---- */
   .dash-frame {
-  width: 95vw;
-  max-width: 1600px;
-  height: 85vh;
-  min-height: 640px;
-  border: 1px solid var(--global-divider-color);
-  border-radius: 4px;
-  margin: 0.5rem 0;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+    width: 95vw;
+    max-width: 1600px;
+    height: 85vh;
+    min-height: 640px;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .dash-stub {
-    width: 100%; height: 100px; border: 1px dashed var(--global-divider-color); border-radius: 4px;
-    display: flex; align-items: center; justify-content: center; margin-top: 0.5rem; color: var(--global-text-color-light);
+    width: 100%;
+    height: 100px;
+    border: 1px dashed var(--global-divider-color);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+    color: var(--global-text-color-light);
   }
   .ext-link { font-size: 0.85rem; margin-top: 0.5rem; display: inline-block; }
+
+  /* ---- Per-question deep dives table ---- */
   details.questions { margin: 1rem 0; }
   details.questions summary { cursor: pointer; font-weight: 500; padding: 0.5rem 0; }
-  .q-grid { display: grid; grid-template-columns: auto 1fr auto auto; gap: 0.25rem 1rem; font-size: 0.9rem; margin-top: 0.5rem; }
+  .q-grid {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 0.25rem 1rem;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
   .q-grid > div { padding: 0.25rem 0; border-bottom: 1px solid var(--global-divider-color); }
 </style>
 
@@ -51,9 +112,18 @@ Each experiment isolates one mechanism: hallucination as topological signature, 
 
 Every experiment shares the same skeleton. Generate N completions for each prompt or condition; embed each completion with a sentence-embedding model; then apply a geometric measure — distance, spread, cluster structure, topological complexity, axis separation, or path length — to the resulting cloud of points. The geometric measure is the dependent variable. The prompt or condition is the independent variable. Specifics differ per experiment.
 
----
+<nav class="exp-nav" aria-label="Experiment quick-jump">
+  <a href="#exp-2">Exp 2 · Hallucination</a>
+  <a href="#exp-3">Exp 3 · Metric</a>
+  <a href="#exp-4">Exp 4 · Boundary</a>
+  <a href="#exp-5">Exp 5 · CoT</a>
+  <a href="#exp-6">Exp 6 · Layer Propagation</a>
+  <a href="#exp-7">Exp 7 · Binary Axes</a>
+  <a href="#exp-9">Exp 9 · Orthogonal vs Destructive</a>
+  <a href="#exp-10">Exp 10 · Grassmannian Path</a>
+</nav>
 
-<div class="exp-block" markdown="1">
+<div class="exp-block" markdown="1" id="exp-2">
 
 ## Experiment 2 — Topology of Hallucination
 
@@ -109,7 +179,7 @@ Every experiment shares the same skeleton. Generate N completions for each promp
 
 </div>
 
-<div class="exp-block" markdown="1">
+<div class="exp-block" markdown="1" id="exp-3">
 
 ## Experiment 3 — Prompt as Metric
 
@@ -132,7 +202,7 @@ For each (concept, condition) pair, embeddings of the 10 descriptions are aggreg
 
 </div>
 
-<div class="exp-block" markdown="1">
+<div class="exp-block" markdown="1" id="exp-4">
 
 ## Experiment 4 — Boundary Enforcement
 
@@ -156,7 +226,7 @@ Off-topic content is scored by cosine similarity of each generated sentence to a
 
 </div>
 
-<div class="exp-block" markdown="1">
+<div class="exp-block" markdown="1" id="exp-5">
 
 ## Experiment 5 — Chain-of-Thought as Topology
 
@@ -179,7 +249,7 @@ For CoT completions, the response is split into reasoning steps. Each step is em
 
 </div>
 
-<div class="exp-block" markdown="1">
+<div class="exp-block" markdown="1" id="exp-6">
 
 ## Experiment 6 — Layer-by-Layer Constraint Propagation
 
@@ -200,7 +270,7 @@ For each completion, hidden states are captured at every layer. Per-layer geomet
 
 </div>
 
-<div class="exp-block" markdown="1">
+<div class="exp-block" markdown="1" id="exp-7">
 
 ## Experiment 7 — Binary Constraint Axes
 
@@ -226,7 +296,7 @@ For each (question, axis, value) triple, N completions are generated and embedde
 
 </div>
 
-<div class="exp-block" markdown="1">
+<div class="exp-block" markdown="1" id="exp-9">
 
 ## Experiment 9 — Orthogonal vs. Destructive Prompts
 
@@ -250,7 +320,7 @@ If interference dominates, the destructive prompt's outputs are diffuse and unfo
 
 </div>
 
-<div class="exp-block" markdown="1">
+<div class="exp-block" markdown="1" id="exp-10">
 
 ## Experiment 10 — Grassmannian Path Length
 
