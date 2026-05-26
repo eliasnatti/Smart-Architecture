@@ -18,7 +18,7 @@ ninja.data = [{
           },
         },{id: "nav-research",
           title: "research",
-          description: "Active research programs and experimental results.",
+          description: "Active research programs, papers, and experimental results.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/Smart-Architecture/research/";
