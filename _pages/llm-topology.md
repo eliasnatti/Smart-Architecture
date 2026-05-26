@@ -2,7 +2,7 @@
 layout: page
 title: LLM topology
 permalink: /llm-topology/
-description: "Prompt Engineering as Geometry — six experiments measuring how prompts shape internal model state."
+description: "Prompt Engineering as Geometry — eight experiments measuring how prompts shape internal model state."
 nav: false
 toc:
   sidebar: left
@@ -34,11 +34,11 @@ toc:
 
 A series of experiments asking whether the geometric tools we use to analyze physical systems — UMAP, persistence diagrams, cluster counts, centroid separation, Fisher discriminability, Grassmannian path lengths — also tell us useful things about what happens *inside* a large language model when it responds to a prompt. The motivating practical question is whether prompts can be designed against the model's internal geometry rather than just its outputs.
 
-Each experiment isolates one mechanism: hallucination as topological signature, prompts as distortions of the output metric, constraints as geometric walls, chain-of-thought as path structure, layer-wise propagation, and prompt parameters as orthogonal axes. All results below use a fixed system prompt protocol; earlier rounds without a system prompt exist locally and may be re-published under the same protocol later.
+Each experiment isolates one mechanism: hallucination as topological signature, prompts as distortions of the output metric, constraints as geometric walls, chain-of-thought as path structure, layer-wise propagation, prompt parameters as orthogonal axes, interference between prompt sentences, and the geodesic length of question-to-answer paths. All results below use a fixed system prompt protocol; earlier rounds without a system prompt exist locally and may be re-published under the same protocol later.
 
 ## Common pipeline
 
-Every experiment shares the same skeleton. Generate N completions for each prompt or condition; embed each completion with a sentence-embedding model; then apply a geometric measure — distance, spread, cluster structure, topological complexity, or axis separation — to the resulting cloud of points. The geometric measure is the dependent variable. The prompt or condition is the independent variable. Specifics differ per experiment.
+Every experiment shares the same skeleton. Generate N completions for each prompt or condition; embed each completion with a sentence-embedding model; then apply a geometric measure — distance, spread, cluster structure, topological complexity, axis separation, or path length — to the resulting cloud of points. The geometric measure is the dependent variable. The prompt or condition is the independent variable. Specifics differ per experiment.
 
 ---
 
@@ -215,9 +215,55 @@ For each (question, axis, value) triple, N completions are generated and embedde
 
 </div>
 
----
+<div class="exp-block" markdown="1">
 
-*Experiment 1 (constraint tightening) and experiments 8–11 (prompt decomposition, orthogonality vs. destruction, Grassmannian path length, tone & sycophancy) are kept locally and will move to this page if they are re-run under the published protocol.*
+## Experiment 9 — Orthogonal vs. Destructive Prompts
+
+**What it tests.** How much of the performance gain from prompt-engineering comes from *avoiding interference* between sentences in a prompt, vs. from *adding useful constraints*. Two prompts for the same task are constructed by embedding-guided selection: one in which every sentence is maximally orthogonal to every other sentence (and to the system prompt), and one in which sentences deliberately interfere with each other and with the system prompt. The output geometries are then compared head-to-head.
+
+**Setup.** Four parts:
+
+- *Part A* — Construct orthogonal and destructive prompts via embedding-guided sentence selection.
+- *Part B* — Measure output geometry across 5 conditions × 300 completions each.
+- *Part C* — Prompt-space analysis: UMAP of the prompt sentences themselves plus per-pair interference correlation.
+- *Part D* — Efficiency frontier: incremental sentence-addition curves showing how quickly geometric quality saturates or degrades.
+
+If interference dominates, the destructive prompt's outputs are diffuse and unfocused even with the same number of constraint sentences. If added constraint dominates, both prompts perform similarly per sentence and the difference shrinks.
+
+<div class="model-tabs" data-exp="9">
+  <button class="model-btn active" data-model="llama3.1_8b">llama3.1:8b</button>
+  <button class="model-btn" data-model="llama3.2_3b">llama3.2:3b</button>
+</div>
+<div class="dash-stub" data-exp="9">Click a model to load the dashboard.</div>
+<a class="ext-link" href="#" data-ext="9">↗ open current dashboard in new tab</a>
+
+</div>
+
+<div class="exp-block" markdown="1">
+
+## Experiment 10 — Grassmannian Path Length
+
+**What it tests.** Defines a single scalar — **Grassmannian Path Length (GPL)** — for how much geometric work a model must do to get from a question to its answer under a given prompt. A shorter GPL means the prompt creates a more direct route through the representation space; longer GPL means more detours, more reconsideration, more wasted motion.
+
+**Setup.** Five parts:
+
+- *Part A* — Output-level GPL from chain-of-thought step embeddings (5 problems × 5 prompt conditions).
+- *Part B* — Layer-level GPL from HuggingFace hidden-state extraction.
+- *Part C* — The GPL–accuracy Pareto frontier: are short paths also accurate paths, or is there a tradeoff?
+- *Part D* — Combined GPL approximation: GPL_out × mean_layer_step_size, fusing output and layer perspectives.
+- *Part E* — Question-family clustering by GPL profile.
+
+GPL is the metric most directly aligned with the broader "architecture as geometry" thesis: if prompts act as constraint walls on a representation manifold, then better prompts shorten the geodesic from question to answer.
+
+*Currently rendered for llama3.1:8b only; the 3B run is pending.*
+
+<div class="model-tabs" data-exp="10">
+  <button class="model-btn active" data-model="llama3.1_8b">llama3.1:8b</button>
+</div>
+<div class="dash-stub" data-exp="10">Click a model to load the dashboard.</div>
+<a class="ext-link" href="#" data-ext="10">↗ open current dashboard in new tab</a>
+
+</div>
 
 <script>
 (function() {
