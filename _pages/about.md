@@ -6,7 +6,7 @@ subtitle: <a href='#'>Independent researcher</a>. Physics, semiconductor process
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: prof_pic.png
   image_circular: false
   more_info: >
     <p>Elias Natti</p>
@@ -25,10 +25,8 @@ latest_posts:
   limit: 5
 ---
 
-I am Elias Natti — an independent researcher working at the intersection of physics, semiconductor process engineering, and geometric machine learning. My background is in physics and in running real semiconductor equipment, most directly a Wideroe double-gap drift-tube linac used for ion implantation. That kind of work teaches you that the systems we build are full of structure that nobody has bothered to name.
+I am Elias Natti — an independent researcher working at the intersection of physics, semiconductor process engineering, and geometric machine learning. My background is in physics and in ion implantation — the beam physics, the process integration, and the device impact downstream. That kind of work teaches you that the systems we build are full of structure that nobody has bothered to name.
 
-This site is primarily a **blog**. The posts here are where I think out loud about the geometry hiding inside physical systems — accelerators, fab process flows, device-circuit-system hierarchies — and what machine learning would look like if it actually used that structure.
+I left Applied Materials to pursue that observation full-time. The problems I had built domain-specific methodologies for — modeling nested process constraints, predicting device impact from upstream variation, navigating high-dimensional viability windows — kept turning out to be instances of the same geometric structure. The specific solutions worked, but they did not generalize. I wanted the time and freedom to build the general ones.
 
-A separate, longer-term research program of mine, **Architecture as Geometry**, treats neural network architectures as geometric objects operating over Grassmannian and flag manifolds. That work has its own life and will surface here only when a post overlaps with it directly. The blog is not a research report; it is the public-facing scratchpad.
-
-The blog is not a tutorial series and not a pitch. It is one researcher writing things down clearly. Subsequent posts will be backed by runnable experiments on GitHub.
+The research program that came out of that, **Architecture as Geometry**, treats neural network architectures as geometric objects operating over Grassmannian and flag manifolds. The goal is models whose structure matches the structure of the physical systems they are trained on — not as a post-hoc regularization, but at the level of architecture.

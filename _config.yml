@@ -13,7 +13,7 @@ first_name: Elias
 middle_name:
 last_name: Natti
 contact_note: >
-  Independent researcher. Best way to reach me is GitHub for anything code-adjacent.
+  Independent researcher. Best way to reach me is email.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   An independent research blog by Elias Natti on the geometry hiding inside
   semiconductor manufacturing, accelerator physics, and machine learning architectures.
