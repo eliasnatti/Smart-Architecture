@@ -84,6 +84,7 @@ Together these results establish three measurable geometric quantities — meani
 
 <div class="paper-actions">
   <a href="{{ '/assets/pdf/paper1b_geodesic.pdf' | relative_url }}">PDF (1.0 MB)</a>
+  <a href="https://github.com/eliasnatti/Smart-Architecture-Experiments">Code</a>
 </div>
 
 </div>
