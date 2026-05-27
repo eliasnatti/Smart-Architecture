@@ -18,7 +18,7 @@ function determineGiscusTheme() {
 
   let giscusAttributes = {
     src: "https://giscus.app/client.js",
-    "data-repo": "enatti-test/Smart-Architecture",
+    "data-repo": "eliasnatti/Smart-Architecture",
     "data-repo-id": "",
     "data-category": "Comments",
     "data-category-id": "",
