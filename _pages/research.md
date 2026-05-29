@@ -61,7 +61,7 @@ The central reframing: a network's computation is a path on the Grassmannian fro
 The practical implication: architecture development — historically a process of human intuition and empirical search — can be reformulated as optimization over a well-defined geometric space.
 
 <div class="paper-actions">
-  <a href="{{ '/assets/pdf/paper1_primitives.pdf' | relative_url }}">PDF (5.3 MB)</a>
+  <a href="{{ '/assets/pdf/paper1_primitives_v38.pdf' | relative_url }}">PDF (5.3 MB)</a>
 </div>
 
 </div>
