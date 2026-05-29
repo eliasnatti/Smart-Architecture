@@ -83,7 +83,7 @@ Third, **cumulative curriculum training constructs a flag manifold**: a nested s
 Together these results establish three measurable geometric quantities — meaning fraction, reservoir coherence, and flag nesting — as diagnostics for multi-task representation quality, with direct implications for continual learning and automatic architecture discovery.
 
 <div class="paper-actions">
-  <a href="{{ '/assets/pdf/paper1b_geodesic.pdf' | relative_url }}">PDF (1.0 MB)</a>
+  <a href="{{ '/assets/pdf/paper1b_geodesic_v13.pdf' | relative_url }}">PDF (1.0 MB)</a>
   <a href="https://github.com/eliasnatti/Smart-Architecture-Experiments">Code</a>
 </div>
 

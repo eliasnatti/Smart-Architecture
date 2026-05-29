@@ -1,0 +1,67 @@
+warning: in the working copy of '_config.yml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_data/socials.yml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_pages/about.md', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/_config.yml b/_config.yml[m
+[1mindex 239d150..3bed1eb 100644[m
+[1m--- a/_config.yml[m
+[1m+++ b/_config.yml[m
+[36m@@ -13,7 +13,7 @@[m [mfirst_name: Elias[m
+ middle_name:[m
+ last_name: Natti[m
+ contact_note: >[m
+[31m-  Independent researcher. Best way to reach me is GitHub for anything code-adjacent.[m
+[32m+[m[32m  Independent researcher. Best way to reach me is email.[m
+ description: > # the ">" symbol means to ignore newlines until "footer_text:"[m
+   An independent research blog by Elias Natti on the geometry hiding inside[m
+   semiconductor manufacturing, accelerator physics, and machine learning architectures.[m
+[1mdiff --git a/_data/socials.yml b/_data/socials.yml[m
+[1mindex 5e01cef..6fab0b5 100644[m
+[1m--- a/_data/socials.yml[m
+[1m+++ b/_data/socials.yml[m
+[36m@@ -1,14 +1,5 @@[m
+ # this file contains the social media links and usernames of the author[m
+ # the socials will be displayed in the order they are defined here[m
+ # for more information, please refer to the documentation of jekyll-socials plugin: https://github.com/george-gca/jekyll-socials[m
+[31m-cv_pdf: /assets/pdf/example_pdf.pdf # path to your CV PDF file[m
+[31m-email: you@example.com # your email address[m
+[31m-inspirehep_id: 1010907 # Inspire HEP author ID[m
+[31m-rss_icon: true # comment this line to hide the RSS icon[m
+[31m-scholar_userid: qc6CJjYAAAAJ # your Google Scholar ID[m
+[31m-# wechat_qr: # filename of your wechat qr-code saved as an image (e.g., wechat-qr.png if saved to assets/img/wechat-qr.png)[m
+[31m-# whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)[m
+[31m-custom_social: # can be any name here other than the ones already defined in the jekyll-socials plugin[m
+[31m-  logo: https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png # can be png, svg, jpg[m
+[31m-  title: Custom Social[m
+[31m-  url: https://www.alberteinstein.com/[m
+[32m+[m[32memail: enatti@gmail.com[m
+[32m+[m[32mlinkedin_username: elias-natti-ba70a397[m
+[1mdiff --git a/_pages/about.md b/_pages/about.md[m
+[1mindex 3cfdf4e..9125aad 100644[m
+[1m--- a/_pages/about.md[m
+[1m+++ b/_pages/about.md[m
+[36m@@ -25,10 +25,8 @@[m [mlatest_posts:[m
+   limit: 5[m
+ ---[m
+ [m
+[31m-I am Elias Natti — an independent researcher working at the intersection of physics, semiconductor process engineering, and geometric machine learning. My background is in physics and in running real semiconductor equipment, most directly a Wideroe double-gap drift-tube linac used for ion implantation. That kind of work teaches you that the systems we build are full of structure that nobody has bothered to name.[m
+[32m+[m[32mI am Elias Natti — an independent researcher working at the intersection of physics, semiconductor process engineering, and geometric machine learning. My background is in physics and in ion implantation — the beam physics, the process integration, and the device impact downstream. That kind of work teaches you that the systems we build are full of structure that nobody has bothered to name.[m
+ [m
+[31m-This site is primarily a **blog**. The posts here are where I think out loud about the geometry hiding inside physical systems — accelerators, fab process flows, device-circuit-system hierarchies — and what machine learning would look like if it actually used that structure.[m
+[32m+[m[32mI left Applied Materials to pursue that observation full-time. The problems I had built domain-specific methodologies for — modeling nested process constraints, predicting device impact from upstream variation, navigating high-dimensional viability windows — kept turning out to be instances of the same geometric structure. The specific solutions worked, but they did not generalize. I wanted the time and freedom to build the general ones.[m
+ [m
+[31m-A separate, longer-term research program of mine, **Architecture as Geometry**, treats neural network architectures as geometric objects operating over Grassmannian and flag manifolds. That work has its own life and will surface here only when a post overlaps with it directly. The blog is not a research report; it is the public-facing scratchpad.[m
+[31m-[m
+[31m-The blog is not a tutorial series and not a pitch. It is one researcher writing things down clearly. Subsequent posts will be backed by runnable experiments on GitHub.[m
+[32m+[m[32mThe research program that came out of that, **Architecture as Geometry**, treats neural network architectures as geometric objects operating over Grassmannian and flag manifolds. The goal is models whose structure matches the structure of the physical systems they are trained on — not as a post-hoc regularization, but at the level of architecture.[m
+[1mdiff --git a/assets/img/prof_pic.jpg b/assets/img/prof_pic.jpg[m
+[1mdeleted file mode 100644[m
+[1mindex 46bcf9c..0000000[m
+Binary files a/assets/img/prof_pic.jpg and /dev/null differ
+[1mdiff --git a/assets/img/prof_pic.jpg.PNG b/assets/img/prof_pic.jpg.PNG[m
+[1mdeleted file mode 100644[m
+[1mindex 0b280db..0000000[m
+Binary files a/assets/img/prof_pic.jpg.PNG and /dev/null differ
+[1mdiff --git a/assets/img/prof_pic_color.png b/assets/img/prof_pic_color.png[m
+[1mdeleted file mode 100644[m
+[1mindex 4a33911..0000000[m
+Binary files a/assets/img/prof_pic_color.png and /dev/null differ
