@@ -70,7 +70,7 @@ The practical implication: architecture development — historically a process o
 
 ### Paper 1b — Empirical Geometry of Multi-Task Learning: L1-Discovered Complexity, Geodesic Transfer, and Flag Manifold Construction via Cumulative Curriculum
 
-<div class="paper-meta">Eli Natti · preprint · May 2026 · 21 pages</div>
+<div class="paper-meta">Elias Natti · preprint · May 2026 · 21 pages</div>
 
 The empirical companion to Paper 1. Using a rotation-of-projection architecture (`H_rotational`) with `exp(A)`-parameterized mixers on five structurally diverse MNIST-derived tasks, the paper establishes three findings that the geometric prior framework predicts but that require empirical discovery to quantify.
 
