@@ -93,6 +93,8 @@ Together these results establish three measurable geometric quantities — meani
 
 An empirical program asking whether the same geometric tools — UMAP, persistence diagrams, Grassmannian path lengths, cluster structure — help us understand how prompts shape what large language models do internally. The motivation is practical: better prompts for domain-specific behavior.
 
+Why does the internal geometry matter? In domain-specific agentic applications — semiconductor process control, medical reasoning, legal document analysis — the cost of a wrong answer isn't a bad chatbot reply, it's a scrapped wafer lot or a missed diagnosis. Effective deployment requires knowing, before the model answers, which parts of the task it can handle and which parts need external retrieval, tool calls, or human oversight. If prompt constraints visibly reshape the model's representational geometry — collapsing certain subspaces, stretching others, opening or closing paths through latent space — then that geometry becomes a diagnostic instrument: a way to read off what the model has confidently encoded versus where it is interpolating through territory it has never seen. The experiments below treat each geometric signature (cluster separation, path length, attractor structure) as a candidate signal for that diagnostic.
+
 The results across eight experiments are gathered in the [**LLM Topology gallery**]({{ '/llm-topology/' | relative_url }}). Each experiment isolates one mechanism (hallucination, boundary enforcement, chain-of-thought, constraint axes, layer-wise propagation, prompt interference, geodesic path length) and visualizes the model's internal state with system-prompted inputs.
 
 ---
