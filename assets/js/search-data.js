@@ -27,7 +27,7 @@ ninja.data = [{
         
           title: "What Y-by-X Cannot See",
         
-        description: "Y-by-X is the right first pass on fab data. Plücker coordinates are the right second pass — for the structure Y-by-X is built to miss.",
+        description: "Plücker coordinates as a second-tier tool for the structure Y-by-X is built to miss.",
         section: "Posts",
         handler: () => {
           
