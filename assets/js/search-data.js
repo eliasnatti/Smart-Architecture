@@ -23,7 +23,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/Smart-Architecture/research/";
           },
-        },{id: "post-flag-manifolds-in-the-fab",
+        },{id: "post-what-y-by-x-cannot-see",
+        
+          title: "What Y-by-X Cannot See",
+        
+        description: "Y-by-X is the right first pass on fab data. Plücker coordinates are the right second pass — for the structure Y-by-X is built to miss.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/Smart-Architecture/blog/2026/what-y-by-x-cannot-see/";
+          
+        },
+      },{id: "post-flag-manifolds-in-the-fab",
         
           title: "Flag Manifolds in the Fab",
         
