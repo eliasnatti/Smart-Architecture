@@ -2,7 +2,7 @@
 layout: post
 title: "What Y-by-X Cannot See"
 date: 2026-06-03 09:00:00
-description: "Y-by-X is the right first pass on fab data. Plücker coordinates are the right second pass — for the structure Y-by-X is built to miss."
+description: "Plücker coordinates as a second-tier tool for the structure Y-by-X is built to miss."
 tags: geometry semiconductors plucker process-engineering
 categories: motivation
 giscus_comments: false
@@ -11,9 +11,9 @@ related_posts: false
 
 The standard first-pass on any process investigation in a fab is the same in every fab: Y-by-X. Take the output you care about — yield, $V_t$, critical dimension, edge-die failure rate — and plot it against every input parameter you have. Sort the result by R² or by p-value. The top of the pareto tells you which knobs to investigate.
 
-Y-by-X works. It catches single-knob effects fast. It is the right first pass on a process investigation and that should not change.
+Y-by-X is what every fab does and has done for decades. It catches single-knob effects fast and is the entry point for almost every process investigation. This post takes it as the starting point — what it surfaces, and what it cannot.
 
-This post is about what Y-by-X is *built* to miss, why what it misses is exactly the structure I argued for in [the previous post]({{ '/blog/2026/flag-manifolds-in-the-fab/' | relative_url }}), and what a working second-tier pass looks like.
+This is about what Y-by-X is *built* to miss, why what it misses is exactly the structure I argued for in [the previous post]({{ '/blog/2026/flag-manifolds-in-the-fab/' | relative_url }}), and what a working second-tier pass looks like.
 
 ## The marginal blind spot
 
@@ -165,7 +165,7 @@ Pair the two passes and you can ask three questions Y-by-X structurally cannot:
 
 **Which parameter interactions are real?** Y-by-X can flag a candidate two-knob interaction; running the Plücker analysis on that pair (with the rest of the surfaced parameters in the slice) tells you whether the two knobs are spanning a real subspace of the viable region or whether the apparent interaction is an artifact of how the parameters are individually parameterized.
 
-None of this replaces Y-by-X. The first pass is doing the work of pruning sixty knobs down to a handful. The second pass is taking that handful and asking the question that the first pass — by construction, projecting one axis at a time — cannot.
+The first pass is doing the work of pruning sixty knobs down to a handful. The second pass takes that handful and asks the question the first pass — by construction, projecting one axis at a time — cannot. Whether the first pass itself is the right one for this purpose is a question for a later post; for now, take it as given.
 
 ## Sweeping the frozen axis
 
@@ -178,95 +178,111 @@ If the Plücker coordinates change as you sweep, the swept axis is *modulating* 
 The clearest cases are the ones where the relationship between two knobs does not just weaken or strengthen as you sweep the third — it *changes sign*. At low values of the swept axis the two knobs are positively correlated; somewhere in the middle the correlation passes through zero; at high values the same two knobs are negatively correlated. The Plücker signature is encoding a 2D plane that rotates as you move through the 3D sweep space.
 
 <figure markdown="0" style="margin: 1.5rem 0;">
-<svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; max-width:720px;">
+<svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; max-width:720px;">
   <style>
-    .axis  { stroke: var(--global-text-color, #333); stroke-width: 1; fill: none; }
-    .face  { fill: var(--global-theme-color, #b509ac); fill-opacity: 0.05; stroke: var(--global-divider-color, #ccc); stroke-width: 0.8; }
-    .dot   { fill: var(--global-text-color, #333); opacity: 0.55; }
-    .fit   { stroke: var(--global-theme-color, #b509ac); stroke-width: 2; fill: none; }
-    .lbl   { fill: var(--global-text-color, #333); font: 12px sans-serif; }
-    .small { fill: var(--global-text-color, #333); font: 10px sans-serif; }
-    .cap   { fill: var(--global-text-color-light, #888); font: 11px sans-serif; font-style: italic; }
-    .swp   { stroke: var(--global-text-color, #333); stroke-width: 1.4; fill: none; marker-end: url(#sweeparr); }
+    .x3axis { stroke: var(--global-text-color, #333); stroke-width: 1.6; fill: none; marker-end: url(#x3arr); }
+    .tickln { stroke: var(--global-text-color, #333); stroke-width: 1.4; fill: none; }
+    .face   { fill: var(--global-theme-color, #b509ac); fill-opacity: 0.07; stroke: var(--global-divider-color, #999); stroke-width: 0.9; }
+    .pax    { stroke: var(--global-text-color, #333); stroke-width: 0.9; fill: none; opacity: 0.7; }
+    .dot    { fill: var(--global-text-color, #333); opacity: 0.6; }
+    .fit    { stroke: var(--global-theme-color, #b509ac); stroke-width: 2; fill: none; }
+    .lbl    { fill: var(--global-text-color, #333); font: 12px sans-serif; }
+    .small  { fill: var(--global-text-color, #333); font: 10px sans-serif; }
+    .tlbl   { fill: var(--global-text-color, #333); font: 11px sans-serif; font-weight: 600; text-anchor: middle; }
+    .cap    { fill: var(--global-text-color-light, #888); font: 11px sans-serif; font-style: italic; text-anchor: middle; }
   </style>
   <defs>
-    <marker id="sweeparr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <marker id="x3arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="var(--global-text-color, #333)"/>
     </marker>
   </defs>
 
-  <!-- Plane 1: low X3, positive slope -->
-  <g transform="translate(20,40)">
-    <polygon class="face" points="10,160 170,160 200,30 40,30"/>
-    <line class="axis" x1="10"  y1="160" x2="170" y2="160"/>
-    <line class="axis" x1="10"  y1="160" x2="40"  y2="30"/>
-    <text class="small" x="105" y="178" text-anchor="middle">X₁ →</text>
-    <text class="small" x="0"   y="100" text-anchor="middle" transform="rotate(-65,0,100)">Y →</text>
-    <!-- positive slope fit -->
-    <line class="fit" x1="30" y1="150" x2="170" y2="50"/>
-    <!-- scatter dots (along positive slope) -->
-    <circle class="dot" cx="40"  cy="148" r="2.5"/>
-    <circle class="dot" cx="55"  cy="128" r="2.5"/>
-    <circle class="dot" cx="68"  cy="138" r="2.5"/>
-    <circle class="dot" cx="85"  cy="112" r="2.5"/>
-    <circle class="dot" cx="95"  cy="100" r="2.5"/>
-    <circle class="dot" cx="115" cy="92"  r="2.5"/>
-    <circle class="dot" cx="128" cy="78"  r="2.5"/>
-    <circle class="dot" cx="145" cy="65"  r="2.5"/>
-    <circle class="dot" cx="160" cy="48"  r="2.5"/>
-    <text class="cap" x="105" y="20" text-anchor="middle">X₃ = low · positive</text>
+  <!-- X3 axis: diagonal line going up-right -->
+  <line class="x3axis" x1="40" y1="374" x2="610" y2="160"/>
+  <text class="lbl" x="625" y="158">X₃</text>
+
+  <!-- ===== Plane 1: X3 = low (positive slope) ===== -->
+  <!-- Anchor (BL of plane) on X3 axis at (115, 333) -->
+  <g>
+    <!-- tick mark on X3 axis -->
+    <circle cx="115" cy="333" r="3" fill="var(--global-text-color, #333)"/>
+    <text class="tlbl" x="115" y="358">X₃ = low</text>
+    <!-- plane parallelogram: BL=(115,333) BR=(245,333) TR=(257,228) TL=(127,228) -->
+    <polygon class="face" points="115,333 245,333 257,228 127,228"/>
+    <!-- in-plane X1 axis (along bottom) and Y axis (along left edge) -->
+    <line class="pax" x1="115" y1="333" x2="245" y2="333"/>
+    <line class="pax" x1="115" y1="333" x2="127" y2="228"/>
+    <text class="small" x="248" y="337">X₁</text>
+    <text class="small" x="118" y="222">Y</text>
+    <!-- regression line going BL to TR (positive slope inside the plane) -->
+    <line class="fit" x1="122" y1="328" x2="250" y2="233"/>
+    <!-- scatter dots along positive correlation -->
+    <circle class="dot" cx="129" cy="322" r="2.6"/>
+    <circle class="dot" cx="137" cy="312" r="2.6"/>
+    <circle class="dot" cx="151" cy="307" r="2.6"/>
+    <circle class="dot" cx="165" cy="291" r="2.6"/>
+    <circle class="dot" cx="180" cy="281" r="2.6"/>
+    <circle class="dot" cx="193" cy="275" r="2.6"/>
+    <circle class="dot" cx="208" cy="259" r="2.6"/>
+    <circle class="dot" cx="222" cy="251" r="2.6"/>
+    <circle class="dot" cx="236" cy="244" r="2.6"/>
+    <text class="cap" x="186" y="220">positive correlation</text>
   </g>
 
-  <!-- Plane 2: mid X3, flat -->
-  <g transform="translate(260,40)">
-    <polygon class="face" points="10,160 170,160 200,30 40,30"/>
-    <line class="axis" x1="10" y1="160" x2="170" y2="160"/>
-    <line class="axis" x1="10" y1="160" x2="40"  y2="30"/>
-    <text class="small" x="105" y="178" text-anchor="middle">X₁ →</text>
-    <text class="small" x="0"   y="100" text-anchor="middle" transform="rotate(-65,0,100)">Y →</text>
-    <!-- flat fit -->
-    <line class="fit" x1="30" y1="100" x2="170" y2="100"/>
-    <!-- scatter dots (no trend) -->
-    <circle class="dot" cx="40"  cy="105" r="2.5"/>
-    <circle class="dot" cx="55"  cy="92"  r="2.5"/>
-    <circle class="dot" cx="68"  cy="115" r="2.5"/>
-    <circle class="dot" cx="85"  cy="88"  r="2.5"/>
-    <circle class="dot" cx="95"  cy="108" r="2.5"/>
-    <circle class="dot" cx="115" cy="95"  r="2.5"/>
-    <circle class="dot" cx="128" cy="112" r="2.5"/>
-    <circle class="dot" cx="145" cy="90"  r="2.5"/>
-    <circle class="dot" cx="160" cy="102" r="2.5"/>
-    <text class="cap" x="105" y="20" text-anchor="middle">X₃ = threshold · flat</text>
+  <!-- ===== Plane 2: X3 = threshold (flat) ===== -->
+  <!-- Anchor (BL) at (322, 257) -->
+  <g>
+    <circle cx="322" cy="257" r="3" fill="var(--global-text-color, #333)"/>
+    <text class="tlbl" x="322" y="282">X₃ = threshold</text>
+    <!-- plane parallelogram: BL=(322,257) BR=(452,257) TR=(464,152) TL=(334,152) -->
+    <polygon class="face" points="322,257 452,257 464,152 334,152"/>
+    <line class="pax" x1="322" y1="257" x2="452" y2="257"/>
+    <line class="pax" x1="322" y1="257" x2="334" y2="152"/>
+    <text class="small" x="455" y="261">X₁</text>
+    <text class="small" x="325" y="146">Y</text>
+    <!-- regression line: horizontal at mid-plane -->
+    <line class="fit" x1="333" y1="204" x2="451" y2="204"/>
+    <!-- scatter dots: no trend -->
+    <circle class="dot" cx="340" cy="210" r="2.6"/>
+    <circle class="dot" cx="355" cy="199" r="2.6"/>
+    <circle class="dot" cx="367" cy="204" r="2.6"/>
+    <circle class="dot" cx="379" cy="215" r="2.6"/>
+    <circle class="dot" cx="394" cy="194" r="2.6"/>
+    <circle class="dot" cx="405" cy="210" r="2.6"/>
+    <circle class="dot" cx="420" cy="199" r="2.6"/>
+    <circle class="dot" cx="432" cy="204" r="2.6"/>
+    <circle class="dot" cx="446" cy="208" r="2.6"/>
+    <text class="cap" x="393" y="144">flat</text>
   </g>
 
-  <!-- Plane 3: high X3, negative slope -->
-  <g transform="translate(500,40)">
-    <polygon class="face" points="10,160 170,160 200,30 40,30"/>
-    <line class="axis" x1="10" y1="160" x2="170" y2="160"/>
-    <line class="axis" x1="10" y1="160" x2="40"  y2="30"/>
-    <text class="small" x="105" y="178" text-anchor="middle">X₁ →</text>
-    <text class="small" x="0"   y="100" text-anchor="middle" transform="rotate(-65,0,100)">Y →</text>
-    <!-- negative slope fit -->
-    <line class="fit" x1="30" y1="50" x2="170" y2="150"/>
-    <!-- scatter dots (along negative slope) -->
-    <circle class="dot" cx="40"  cy="58"  r="2.5"/>
-    <circle class="dot" cx="55"  cy="72"  r="2.5"/>
-    <circle class="dot" cx="68"  cy="62"  r="2.5"/>
-    <circle class="dot" cx="85"  cy="88"  r="2.5"/>
-    <circle class="dot" cx="95"  cy="100" r="2.5"/>
-    <circle class="dot" cx="115" cy="108" r="2.5"/>
-    <circle class="dot" cx="128" cy="125" r="2.5"/>
-    <circle class="dot" cx="145" cy="135" r="2.5"/>
-    <circle class="dot" cx="160" cy="148" r="2.5"/>
-    <text class="cap" x="105" y="20" text-anchor="middle">X₃ = high · negative</text>
+  <!-- ===== Plane 3: X3 = high (negative slope) ===== -->
+  <!-- Anchor (BL) at (529, 182) -->
+  <g>
+    <circle cx="529" cy="182" r="3" fill="var(--global-text-color, #333)"/>
+    <text class="tlbl" x="529" y="207">X₃ = high</text>
+    <!-- plane parallelogram: BL=(529,182) BR=(659,182) TR=(671,77) TL=(541,77) -->
+    <polygon class="face" points="529,182 659,182 671,77 541,77"/>
+    <line class="pax" x1="529" y1="182" x2="659" y2="182"/>
+    <line class="pax" x1="529" y1="182" x2="541" y2="77"/>
+    <text class="small" x="662" y="186">X₁</text>
+    <text class="small" x="532" y="71">Y</text>
+    <!-- regression line: TL to BR (negative slope) -->
+    <line class="fit" x1="547" y1="82" x2="653" y2="177"/>
+    <!-- scatter dots along negative correlation -->
+    <circle class="dot" cx="553" cy="87"  r="2.6"/>
+    <circle class="dot" cx="564" cy="100" r="2.6"/>
+    <circle class="dot" cx="577" cy="106" r="2.6"/>
+    <circle class="dot" cx="588" cy="119" r="2.6"/>
+    <circle class="dot" cx="601" cy="124" r="2.6"/>
+    <circle class="dot" cx="612" cy="140" r="2.6"/>
+    <circle class="dot" cx="623" cy="153" r="2.6"/>
+    <circle class="dot" cx="635" cy="163" r="2.6"/>
+    <circle class="dot" cx="647" cy="171" r="2.6"/>
+    <text class="cap" x="600" y="69">negative correlation</text>
   </g>
-
-  <!-- X3 sweep arrow underneath -->
-  <line class="swp" x1="40" y1="270" x2="680" y2="270"/>
-  <text class="lbl" x="360" y="290" text-anchor="middle">X₃ sweep — the formerly-frozen axis</text>
 </svg>
 <figcaption style="font-size:0.85rem; color:var(--global-text-color-light); text-align:center; margin-top:0.5rem;">
-  Three slices of the same (X₁, Y) relationship at low, threshold, and high values of X₃. The (X₁, Y) plane rotates as X₃ sweeps — at one end the correlation is positive, at the other it has flipped sign. Plücker coordinates of the plane track that rotation as a smooth function of X₃.
+  Three (X₁, Y) slices attached to the X₃ axis at low, threshold, and high values. As X₃ sweeps, the (X₁, Y) plane rotates in real Cartesian space — positive correlation at one end, flat at the threshold, negative correlation at the other end. The Plücker coordinates of the plane track that rotation as a smooth function of X₃.
 </figcaption>
 </figure>
 
@@ -280,6 +296,10 @@ The same machinery scales. Unfreeze two axes and you watch a surface of Plücker
 
 ## Two passes, one shape
 
-The geometry was always there. The first post made the case that the fab is a flag manifold. The point of this one is that working with that fact in practice does not require new theory on top of the fab — it requires a second analytical tier that sits on top of the standard first pass.
+Everyone working in a fab knows the structure of process space is multidimensional. That is not the news. The hard part is having a mental model rigorous enough to examine that structure and concrete enough to act on. The Y-by-X pareto is the dominant mental model today not because it captures the structure but because it fits in the head — one knob, one effect, ranked.
 
-Y-by-X identifies the axes. Plücker coordinates identify the subspaces those axes span. Sweeping the frozen axes identifies how those subspaces deform — where the second-order interactions are real and where they are actually third-order effects gated by another knob. The first answers *which knobs*; the second answers *what shape*; the third answers *what bends*. The pareto, the plane, and the deformation. The fab's viable region has all three, and a complete process investigation has to see all three.
+Plücker coordinates do not introduce the multidimensional structure. They introduce a math-and-physics-interpretable projection of it. A 2-plane in a 4-dimensional slice has six Plücker coordinates — six numbers, fewer than the number of parameters in any real process — and each one carries a geometric meaning an engineer can reason about: which pair of axes the plane projects onto, and how strongly. Sweeping the third axis turns those six numbers into six curves whose shape encodes the third-order modulation. The flag manifold of process viability is not made smaller by Plücker. It is made *thinkable*.
+
+Y-by-X identifies the axes. Plücker coordinates identify the subspaces those axes span. Sweeping the frozen axes identifies how those subspaces deform. The first answers *which knobs*; the second answers *what shape*; the third answers *what bends*. The pareto, the plane, and the deformation. A mental model of the fab's viable region that an engineer can hold in their head — and act on — needs all three to be legible.
+
+The next post returns to the first pass itself — whether Y-by-X is actually the right tool for surfacing the candidate parameters, or whether something multivariate from the start would do that job better.
