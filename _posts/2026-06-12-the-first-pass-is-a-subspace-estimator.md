@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The First Pass Is a Subspace Estimator"
-date: 2026-06-15 09:00:00
+date: 2026-06-12 09:00:00
 description: "Y-by-X, trees, and L1+L2 regression are all subspace estimators with different priors. L1+L2's coefficient vector reads as the Plücker basis the engineer needs to act on — and the basis hands back the 2D views worth plotting next."
 tags: geometry semiconductors plucker process-engineering regression interpretability
 categories: motivation
