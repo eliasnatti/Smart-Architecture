@@ -23,7 +23,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/Smart-Architecture/research/";
           },
-        },{id: "post-what-y-by-x-cannot-see",
+        },{id: "post-the-first-pass-is-a-subspace-estimator",
+        
+          title: "The First Pass Is a Subspace Estimator",
+        
+        description: "Y-by-X, trees, and L1+L2 regression are all subspace estimators with different priors. L1+L2&#39;s coefficient vector reads as the Plücker basis the engineer needs to act on — and the basis hands back the 2D views worth plotting next.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/Smart-Architecture/blog/2026/the-first-pass-is-a-subspace-estimator/";
+          
+        },
+      },{id: "post-what-y-by-x-cannot-see",
         
           title: "What Y-by-X Cannot See",
         
