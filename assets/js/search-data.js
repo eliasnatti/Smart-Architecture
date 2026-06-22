@@ -23,7 +23,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/Smart-Architecture/research/";
           },
-        },{id: "post-the-first-pass-is-a-subspace-estimator",
+        },{id: "post-sampling-for-subspaces",
+        
+          title: "Sampling for Subspaces",
+        
+        description: "Cornering tells you the boundary of the viable region. Production data fills its interior. Designed sampling fills the gaps. Together they support the digital twin a subspace analysis needs.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/Smart-Architecture/blog/2026/sampling-for-subspaces/";
+          
+        },
+      },{id: "post-the-first-pass-is-a-subspace-estimator",
         
           title: "The First Pass Is a Subspace Estimator",
         
