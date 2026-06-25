@@ -15,7 +15,7 @@ This post is about how the sampling story actually splits in a fab. Cornering do
 
 ## What classical DOE optimizes
 
-Classical design-of-experiments theory minimizes the variance of *individual regression coefficients*. The mathematical form is a determinant or trace on the coefficient covariance matrix — D-optimality minimizes $|\det((X^\top X)^{-1})|$, A-optimality minimizes its trace, I-optimality minimizes the average prediction variance. All three reward the design for making each coefficient — the effect of one parameter holding the others fixed — as precisely estimated as possible.
+Classical design-of-experiments theory minimizes the variance of *individual regression coefficients*. The mathematical form is a determinant or trace on the coefficient covariance matrix — D-optimality minimizes the determinant, A-optimality minimizes its trace, I-optimality minimizes the average prediction variance. All three reward the design for making each coefficient — the effect of one parameter holding the others fixed — as precisely estimated as possible.
 
 The geometric consequence is consistent across the family: classical designs push runs to the *corners* of the established process window. A two-level fractional factorial with five factors places runs at the extreme combinations $(\pm 1, \pm 1, \pm 1, \pm 1, \pm 1)$. A central composite design adds star points along each axis. These are not naïvely chosen points. They are deliberately placed at the edges of the operating envelope, using domain knowledge, to characterize the *boundary* of the viable region. Cornering tells you where the process starts to fail, how robust the recipe is to edge-of-window excursions, and how much margin sits between nominal operation and the spec walls.
 
