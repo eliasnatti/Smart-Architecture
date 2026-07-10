@@ -44,9 +44,9 @@ The work on this site sits inside a single intellectual frame: **architecture as
 
 Two research programs run under that frame.
 
-## Architecture as Geometry (theory)
+## Architecture as Geometry (theory and applied methodology)
 
-A theoretical program treating neural network architectures as geometric objects operating over Grassmannian and flag manifolds. Paper 1 formalizes the framework; Paper 1b provides the empirical companion, validating and extending the framework's predictions on multi-task learning.
+A theoretical program treating neural network architectures as geometric objects operating over Grassmannian and flag manifolds. Paper 1 formalizes the framework; Paper 1b provides the empirical companion on multi-task learning; the Manifold-Aware Tuning white paper is the applied-methodology outgrowth, aimed at autonomous tuning of precision capital equipment.
 
 <div class="paper-card" markdown="1">
 
@@ -61,7 +61,7 @@ The central reframing: a network's computation is a path on the Grassmannian fro
 The practical implication: architecture development — historically a process of human intuition and empirical search — can be reformulated as optimization over a well-defined geometric space.
 
 <div class="paper-actions">
-  <a href="{{ '/assets/pdf/paper1_primitives_v38.pdf' | relative_url }}">PDF (5.3 MB)</a>
+  <a href="{{ '/assets/pdf/paper1_primitives.pdf' | relative_url }}">PDF (5.3 MB)</a>
 </div>
 
 </div>
@@ -70,7 +70,7 @@ The practical implication: architecture development — historically a process o
 
 ### Paper 1b — Empirical Geometry of Multi-Task Learning: L1-Discovered Complexity, Geodesic Transfer, and Flag Manifold Construction via Cumulative Curriculum
 
-<div class="paper-meta">Elias Natti · preprint · May 2026 · 21 pages</div>
+<div class="paper-meta">Eli Natti · preprint · May 2026 · 21 pages</div>
 
 The empirical companion to Paper 1. Using a rotation-of-projection architecture (`H_rotational`) with `exp(A)`-parameterized mixers on five structurally diverse MNIST-derived tasks, the paper establishes three findings that the geometric prior framework predicts but that require empirical discovery to quantify.
 
@@ -83,8 +83,27 @@ Third, **cumulative curriculum training constructs a flag manifold**: a nested s
 Together these results establish three measurable geometric quantities — meaning fraction, reservoir coherence, and flag nesting — as diagnostics for multi-task representation quality, with direct implications for continual learning and automatic architecture discovery.
 
 <div class="paper-actions">
-  <a href="{{ '/assets/pdf/paper1b_geodesic_v13.pdf' | relative_url }}">PDF (1.0 MB)</a>
-  <a href="https://github.com/eliasnatti/Smart-Architecture-Experiments">Code</a>
+  <a href="{{ '/assets/pdf/paper1b_geodesic.pdf' | relative_url }}">PDF (1.0 MB)</a>
+</div>
+
+</div>
+
+<div class="paper-card" markdown="1">
+
+### Manifold-Aware Tuning: The Self-Tuning Machine
+
+<div class="paper-meta">Elias Natti · white paper · July 2026 · 7 pages</div>
+
+A methodology piece for capital-equipment OEMs and their customers, applying the manifold framing to autonomous tuning of precision instruments — starting with charged-particle beamlines and ion implanters. The premise is that the same geometric structure the theoretical papers identify in neural architectures also organizes the operating manifold of a many-knobbed physical machine, and that a physics-grounded method reasoning over that manifold can turn the tool into one that tunes, diagnoses, and holds itself on-spec from an operator's plain-language intent.
+
+The method sits between the person who knows what the machine should do and the machine that knows how, through three layers. The *Intent* layer converts plain-language requests ("bring the output to target," "find what drifted") into precise objectives and constraints, and asks for clarification when intent is ambiguous or unsafe. The *Reasoning* layer plans candidate actions against a physics-grounded model of the tool, localizes drift when several faults stack, judges feasibility, and chooses the shortest path back to spec. The *Machine* layer executes approved changes through the tool's existing control interface, writing each step to the record as a structured, auditable state transition.
+
+The methodology is machine-agnostic: the OEM or customer supplies the equipment and a physics-grounded model of it, and the method is fit against that model rather than shipped as bundled hardware or trained on a proprietary dataset. First demonstration is end-to-end on a simulated multi-stage beamline — a domain chosen because charged-particle process tools have the exact combination that makes autonomous tuning valuable: multi-parameter interactions, drift, fault stacking, and high downtime cost. The same method generalizes to any precision tool with a physics model and many interacting controls.
+
+*A companion technical brief covering the manifold model, the reasoning-layer algorithms, and the end-to-end simulator validation is available on request.*
+
+<div class="paper-actions">
+  <a href="{{ '/assets/pdf/manifold_aware_tuning.pdf' | relative_url }}">PDF (409 KB)</a>
 </div>
 
 </div>
@@ -92,8 +111,6 @@ Together these results establish three measurable geometric quantities — meani
 ## Prompt Engineering as Geometry (LLM internals)
 
 An empirical program asking whether the same geometric tools — UMAP, persistence diagrams, Grassmannian path lengths, cluster structure — help us understand how prompts shape what large language models do internally. The motivation is practical: better prompts for domain-specific behavior.
-
-Why does the internal geometry matter? In domain-specific agentic applications — semiconductor process control, medical reasoning, legal document analysis — the cost of a wrong answer isn't a bad chatbot reply, it's a scrapped wafer lot or a missed diagnosis. Effective deployment requires knowing, before the model answers, which parts of the task it can handle and which parts need external retrieval, tool calls, or human oversight. If prompt constraints visibly reshape the model's representational geometry — collapsing certain subspaces, stretching others, opening or closing paths through latent space — then that geometry becomes a diagnostic instrument: a way to read off what the model has confidently encoded versus where it is interpolating through territory it has never seen. The experiments below treat each geometric signature (cluster separation, path length, attractor structure) as a candidate signal for that diagnostic.
 
 The results across eight experiments are gathered in the [**LLM Topology gallery**]({{ '/llm-topology/' | relative_url }}). Each experiment isolates one mechanism (hallucination, boundary enforcement, chain-of-thought, constraint axes, layer-wise propagation, prompt interference, geodesic path length) and visualizes the model's internal state with system-prompted inputs.
 
