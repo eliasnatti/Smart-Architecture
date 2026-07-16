@@ -42,7 +42,7 @@ nav_order: 3
 
 The work on this site sits inside a single intellectual frame: **architecture as geometry**. The premise is that the systems we build — physical and computational — have geometric structure that their models usually ignore, and that recovering this structure pays off in transfer, data efficiency, and interpretability.
 
-Two research programs run under that frame.
+Multiple research threads run under that frame.
 
 ## Architecture as Geometry (theory and applied methodology)
 
@@ -104,6 +104,26 @@ The methodology is machine-agnostic: the OEM or customer supplies the equipment 
 
 <div class="paper-actions">
   <a href="{{ '/assets/pdf/manifold_aware_tuning.pdf' | relative_url }}">PDF (409 KB)</a>
+</div>
+
+</div>
+
+## Defect Prevention Research
+
+An empirical thread on how particulate and metal deposits accumulate across a multi-tool fab floor over the course of a campaign, and where intervention strategies — PM scheduling, chamber cleaning cadence, lot routing — actually reduce deposit-driven excursions. The work uses a simulator as the primary research surface: intervention strategies are proposed, run through a realistic multi-tool campaign, and evaluated against per-tool deposit trajectories and excursion counts.
+
+<div class="paper-card" markdown="1">
+
+### ParticleTransfer Digital Foundry — interactive simulation
+
+<div class="paper-meta">Elias Natti · in-browser research simulator · July 2026</div>
+
+An interactive week-of-operation simulation of a multi-tool fab floor covering implant, etch, PVD, and PECVD stages. The simulator tracks how particle and metal deposits accumulate across the floor as lots move through the process flow, when PM events fire, and how deposit-driven excursions build toward the "elevated deposits" KPI that goes critical when the floor's cumulative deposit state crosses threshold. Scrub the timeline to any point in the simulated campaign, drop playback to ½× to inspect a specific handoff, or run at 8× to see multi-day drift compress into seconds. Hover the floor for per-tool state.
+
+The purpose is defect-prevention research: what PM schedules, cleaning intervals, and routing decisions actually keep deposit-driven excursions below threshold, and which choices look reasonable on a single-tool view but break down once deposit propagation across the floor is compounded across a week of operation. The simulator is self-contained (no backend, no external data), runs entirely in the browser, and is intended as a shared reference surface for reasoning about deposit dynamics — not a production forecasting tool.
+
+<div class="paper-actions">
+  <a href="{{ '/assets/html/digital_foundry.html' | relative_url }}" target="_blank" rel="noopener">Open simulator ↗</a>
 </div>
 
 </div>
