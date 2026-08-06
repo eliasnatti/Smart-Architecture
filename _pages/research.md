@@ -61,7 +61,7 @@ The central reframing: a network's computation is a path on the Grassmannian fro
 The practical implication: architecture development — historically a process of human intuition and empirical search — can be reformulated as optimization over a well-defined geometric space.
 
 <div class="paper-actions">
-  <a href="{{ '/assets/pdf/paper1_primitives.pdf' | relative_url }}">PDF (5.3 MB)</a>
+  <a href="{{ '/assets/pdf/paper1_primitives_v38.pdf' | relative_url }}">PDF (5.3 MB)</a>
 </div>
 
 </div>
@@ -83,7 +83,7 @@ Third, **cumulative curriculum training constructs a flag manifold**: a nested s
 Together these results establish three measurable geometric quantities — meaning fraction, reservoir coherence, and flag nesting — as diagnostics for multi-task representation quality, with direct implications for continual learning and automatic architecture discovery.
 
 <div class="paper-actions">
-  <a href="{{ '/assets/pdf/paper1b_geodesic.pdf' | relative_url }}">PDF (1.0 MB)</a>
+  <a href="{{ '/assets/pdf/paper1b_geodesic_v13.pdf' | relative_url }}">PDF (1.0 MB)</a>
 </div>
 
 </div>
@@ -103,7 +103,7 @@ The methodology is machine-agnostic: the OEM or customer supplies the equipment 
 *A companion technical brief covering the manifold model, the reasoning-layer algorithms, and the end-to-end simulator validation is available on request.*
 
 <div class="paper-actions">
-  <a href="{{ '/assets/pdf/manifold_aware_tuning.pdf' | relative_url }}">PDF (409 KB)</a>
+  <a href="{{ '/assets/pdf/Manifold-Aware Tuning — White Paper.pdf' | relative_url }}">PDF (409 KB)</a>
 </div>
 
 </div>
