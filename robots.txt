@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://enatti-test.github.io/Smart-Architecture/sitemap.xml
+Sitemap: https://eliasnatti.github.io/Smart-Architecture/sitemap.xml
