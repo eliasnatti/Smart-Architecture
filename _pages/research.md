@@ -38,15 +38,94 @@ nav_order: 3
     border-color: var(--global-theme-color);
   }
   .paper-card.forthcoming { opacity: 0.65; border-style: dashed; }
+
+  /* Top-level collapsible sections */
+  details.research-section {
+    border-top: 1px solid var(--global-divider-color);
+    padding-top: 0.25rem;
+    margin-top: 1.5rem;
+  }
+  details.research-section > summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.75rem 0 0.5rem;
+    font-family: 'Roboto Slab', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--global-text-color);
+    user-select: none;
+  }
+  details.research-section > summary::-webkit-details-marker { display: none; }
+  details.research-section > summary::before {
+    content: '▸';
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-size: 0.85em;
+    color: var(--global-text-color-light);
+    transition: transform 0.15s ease;
+  }
+  details.research-section[open] > summary::before {
+    transform: rotate(90deg);
+  }
+  details.research-section > summary:hover { color: var(--global-theme-color); }
+
+  /* Nested subsections (under an always-visible header) */
+  details.research-subsection {
+    padding: 0.25rem 0 0.25rem 1rem;
+    margin: 0.75rem 0;
+    border-left: 2px solid var(--global-divider-color);
+  }
+  details.research-subsection > summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.4rem 0;
+    font-family: 'Roboto Slab', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--global-text-color);
+    user-select: none;
+  }
+  details.research-subsection > summary::-webkit-details-marker { display: none; }
+  details.research-subsection > summary::before {
+    content: '▸';
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-size: 0.75em;
+    color: var(--global-text-color-light);
+    transition: transform 0.15s ease;
+  }
+  details.research-subsection[open] > summary::before {
+    transform: rotate(90deg);
+  }
+  details.research-subsection > summary:hover { color: var(--global-theme-color); }
+
+  /* Small tag next to sub-section summary to signal audience */
+  .aud-tag {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 1px 8px;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 999px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--global-text-color-light);
+    vertical-align: middle;
+  }
 </style>
 
 The work on this site sits inside a single intellectual frame: **architecture as geometry**. The premise is that the systems we build — physical and computational — have geometric structure that their models usually ignore, and that recovering this structure pays off in transfer, data efficiency, and interpretability.
 
-Multiple research threads run under that frame.
+Multiple research threads run under that frame. Sections below are collapsed by default — expand the ones that match what you're looking for.
 
-## Architecture as Geometry (theory and applied methodology)
+## Architecture as Geometry
 
-A theoretical program treating neural network architectures as geometric objects operating over Grassmannian and flag manifolds. Paper 1 formalizes the framework; Paper 1b provides the empirical companion on multi-task learning; the Manifold-Aware Tuning white paper is the applied-methodology outgrowth, aimed at autonomous tuning of precision capital equipment.
+A theoretical program treating neural network architectures as geometric objects operating over Grassmannian and flag manifolds, plus the applied-methodology work that carries the same framing out of the lab and onto physical machines. Two audiences, one framework.
+
+<details class="research-subsection" markdown="1">
+<summary>Theory<span class="aud-tag">ML / research</span></summary>
+
+The foundational papers. Paper 1 formalizes the three-primitive framework; Paper 1b is the empirical companion establishing that the framework's predictions hold under multi-task learning.
 
 <div class="paper-card" markdown="1">
 
@@ -88,6 +167,13 @@ Together these results establish three measurable geometric quantities — meani
 
 </div>
 
+</details>
+
+<details class="research-subsection" markdown="1">
+<summary>Semiconductor application<span class="aud-tag">OEM / capital equipment</span></summary>
+
+The applied-methodology outgrowth of the theory work. Autonomous tuning of precision capital equipment, starting with charged-particle beamlines and ion implanters, framed for OEMs and their customers.
+
 <div class="paper-card" markdown="1">
 
 ### Manifold-Aware Tuning: The Self-Tuning Machine
@@ -108,7 +194,10 @@ The methodology is machine-agnostic: the OEM or customer supplies the equipment 
 
 </div>
 
-## Defect Prevention Research
+</details>
+
+<details class="research-section" markdown="1">
+<summary>Defect Prevention Research</summary>
 
 An empirical thread on how particulate and metal deposits accumulate across a multi-tool fab floor over the course of a campaign, and where intervention strategies — PM scheduling, chamber cleaning cadence, lot routing — actually reduce deposit-driven excursions. The work uses a simulator as the primary research surface: intervention strategies are proposed, run through a realistic multi-tool campaign, and evaluated against per-tool deposit trajectories and excursion counts.
 
@@ -128,11 +217,16 @@ The purpose is defect-prevention research: what PM schedules, cleaning intervals
 
 </div>
 
-## Prompt Engineering as Geometry (LLM internals)
+</details>
+
+<details class="research-section" markdown="1">
+<summary>Prompt Engineering as Geometry (LLM internals)</summary>
 
 An empirical program asking whether the same geometric tools — UMAP, persistence diagrams, Grassmannian path lengths, cluster structure — help us understand how prompts shape what large language models do internally. The motivation is practical: better prompts for domain-specific behavior.
 
 The results across eight experiments are gathered in the [**LLM Topology gallery**]({{ '/llm-topology/' | relative_url }}). Each experiment isolates one mechanism (hallucination, boundary enforcement, chain-of-thought, constraint axes, layer-wise propagation, prompt interference, geodesic path length) and visualizes the model's internal state with system-prompted inputs.
+
+</details>
 
 ---
 
