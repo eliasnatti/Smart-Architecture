@@ -217,6 +217,26 @@ The purpose is defect-prevention research: what PM schedules, cleaning intervals
 
 </div>
 
+<div class="paper-card" markdown="1">
+
+### ParticleTransfer Tool Model Companion — interactive companion
+
+<div class="paper-meta">Elias Natti · in-browser research surface · September 2026</div>
+
+An interactive view of the tool-level model behind the ParticleTransfer defect-prevention work — the model that reads deposit and flake signatures across seven different tool types and groups excursions by their underlying mechanism rather than by which tool they came from. Two panels sit alongside each other.
+
+The first panel is the **cross-tool grouping**. A particle database answers *"have we seen this excursion before, and on which tools?"* by filing each excursion under a mechanism rather than under the tool it came from. The model's shared representation does the same thing without being told to — excursions from different tool types that behave alike land on the same direction in its representation, flattened across tool identity. Two cosine similarity matrices show the family structure both in the true wafer signatures (what the wafers actually carried) and in the model's learned representation (what the model predicted for those same wafers). Rows are ordered by family, boxes on the diagonal are the families, hovering surfaces per-cell cosine values.
+
+The second panel is the **within-tool variation**. One dot per chamber inside a single tool type — horizontal axis is the chamber's true mean flake addition per wafer, vertical is the model's mean prediction on the same wafers, and the grey 1:1 line and rank correlation ρ overlay the fit. A toggle switches the chamber identity between *intact* and *replaced by tool-type average*, so you can see what the learned chamber identity contributes beyond the chamber's own history. Vendor A and vendor B are labeled — both were hidden from the model during training.
+
+Companion to the ParticleTransfer Digital Foundry above: the Foundry shows a week of floor operation, and the Tool Model Companion shows what the model sees when it looks at those wafers.
+
+<div class="paper-actions">
+  <a href="{{ '/assets/html/tool_model_companion.html' | relative_url }}" target="_blank" rel="noopener">Open companion ↗</a>
+</div>
+
+</div>
+
 </details>
 
 <details class="research-section" markdown="1">
