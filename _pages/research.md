@@ -194,6 +194,24 @@ The methodology is machine-agnostic: the OEM or customer supplies the equipment 
 
 </div>
 
+<div class="paper-card" markdown="1">
+
+### IMP-01 Console Replay — Manifold-Aware Tuning in action
+
+<div class="paper-meta">Elias Natti · in-browser console replay · November 2026</div>
+
+A console replay of the Manifold-Aware Tuning methodology operating on IMP-01, a simulated high-energy ion implanter. The console shows what the operator sees — the tool's alarm panel, online/local status, and current time — alongside an assistant chat where the operator expresses intent in plain language ("bring the output to target," "something drifted, find the fault") and the method translates that intent into a planned sequence of machine actions through the tool's own controls.
+
+Playback runs at 1×/3×/10×/30× with pause. Inspect a specific handoff at 1×, compress multi-minute tuning sessions at 30×. The chat and the tool's console state are synchronized — every action the assistant proposes maps to a corresponding state transition on the console, each step logged as a structured record an operator can audit after the fact.
+
+Companion to the Manifold-Aware Tuning white paper above: the paper names the method and its three-layer architecture (*Intent* / *Reasoning* / *Machine*); this replay shows those layers running end-to-end on a realistic tool.
+
+<div class="paper-actions">
+  <a href="{{ '/assets/html/tier_reaction.html' | relative_url }}" target="_blank" rel="noopener">Open replay ↗</a>
+</div>
+
+</div>
+
 </details>
 
 <details class="research-section" markdown="1">
